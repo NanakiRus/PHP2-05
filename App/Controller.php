@@ -31,11 +31,4 @@ abstract class Controller
             die('Доступ закрыт');
         }
     }
-
-    public function view($path, $data = [])
-    {
-        $this->view->data = $data;
-        $this->view->view($path);
-    }
-
 }

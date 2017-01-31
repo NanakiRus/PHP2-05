@@ -12,9 +12,9 @@
 <body>
 <article class="container">
 <p>
-    Возникла ошибка: <?php echo $data->getMessage(); ?><br />
-    Номер запрашиваемого документа: <?php echo $data->getCode(); ?><br />
-    На строке: <?php echo $data->getLine(); ?><br />
+    Возникла ошибка: <?php echo $error->getMessage(); ?><br />
+    Номер запрашиваемого документа: <?php echo $error->getCode(); ?><br />
+    На строке: <?php echo $error->getLine(); ?><br />
 </p>
 </article>
 </body>
