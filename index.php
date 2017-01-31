@@ -11,13 +11,16 @@ $controllerClassName = '\\App\\Controller\\' . $controllerName;
 $actionName = $_GET['act'] ?? 'All';
 
 try {
-    if (true === class_exists($controllerClassName, false)) {
-    $controller = new $controllerClassName;
+    if (true === class_exists($controllerClassName)) {
+        $controller = new $controllerClassName;
     } else {
         throw new \App\Exception\Exception404('Страница не найдена', 404);
     }
     $controller->action($actionName);
 } catch (\App\Exception\Exception404 $error) {
+    header("HTTP/1.0 404 Not Found");
+    die;
+} catch (\App\Exception\ExceptionDB $error) {
     $view = new \App\View();
     $view->error = $error;
     $view->view(__DIR__ . '/template/error.php');

@@ -1,0 +1,8 @@
+#0 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\App\Model.php(32): App\Db->query('SELECT * FROM11...', Array, 'App\\Models\\Auth...')
+#1 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\App\Models\Article.php(28): App\Model::findOneById('1')
+#2 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\template\template.php(22): App\Models\Article->__get('author')
+#3 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\App\View.php(37): include('C:\\OpenServer\\O...')
+#4 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\App\Controller\Index.php(17): App\View->view('C:\\OpenServer\\O...')
+#5 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\App\Controller.php(32): App\Controller\Index->actionAll()
+#6 C:\OpenServer\OpenServer\domains\localhost\obychenie\PHP2-05\index.php(19): App\Controller->action('All')
+#7 {main}

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exception\ExceptionDB;
+
 class Db
 {
 
@@ -20,7 +22,7 @@ class Db
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($data);
         if (false === $res) {
-            throw new \Exception($sql);
+            throw new ExceptionDB($sql);
             //die('DB error in ' . $sql);
         }
         if (null === $class) {
@@ -33,7 +35,12 @@ class Db
     public function execute($sql, $data = []): bool
     {
         $sth = $this->dbh->prepare($sql);
-        return $sth->execute($data);
+        $res = $sth->execute($data);
+        if (false === $res) {
+            throw new ExceptionDB($sql);
+        } else {
+            return $res;
+        }
     }
 
     public function findId()
