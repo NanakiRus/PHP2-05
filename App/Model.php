@@ -28,7 +28,7 @@ abstract class Model
     public static function findOneById($id)
     {
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
+        $sql = 'SELECT * FROM11 ' . static::$table . ' WHERE id=:id';
         $res = $db->query($sql, [':id' => $id], static::class);
 
         if (empty($res)) {

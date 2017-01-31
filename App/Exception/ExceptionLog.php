@@ -11,7 +11,7 @@ class ExceptionLog
     {
         parent::__construct($message, $code, $previous);
         $textError = $this->getTraceAsString() . "\r\n";
-        file_put_contents('exceptionLog.txt', $textError, FILE_APPEND);
+        file_put_contents(__DIR__ . '/../../exceptionLog.txt', $textError, FILE_APPEND);
     }
 
 }
