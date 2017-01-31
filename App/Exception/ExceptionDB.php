@@ -4,7 +4,7 @@ namespace App\Exception;
 
 
 class ExceptionDB
-    extends \Exception
+    extends ExceptionLog
 {
 
 }
