@@ -15,7 +15,7 @@
         <?php foreach ($news as $article): ?>
             <ul>
                 <li>
-                    <a href="/obychenie/Php2-04/admin/index.php?act=One&id=<?php echo $article->id; ?>"><?php echo $article->title; ?></a><br/><?php echo $article->text; ?>
+                    <a href="/obychenie/Php2-05/admin/index.php?act=One&id=<?php echo $article->id; ?>"><?php echo $article->title; ?></a><br/><?php echo $article->text; ?>
                 </li>
             </ul>
             <!-- Присвоение необходимо, что-бы избежать повторных запросов к БД -->
@@ -27,7 +27,7 @@
         <?php endforeach; ?>
     </article>
     <h2>Добавить новую новость</h2>
-    <form method="post" action="/obychenie/Php2-04/admin/index.php?act=CU">
+    <form method="post" action="/obychenie/Php2-05/admin/index.php?act=CU">
         <p><input type="text" class="form-control" name="title" value=""></p>
         <p><textarea name="text" class="form-control" rows="3"></textarea></p>
         <input class="btn btn-default btn-lg" type="submit">

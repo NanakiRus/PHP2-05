@@ -16,6 +16,9 @@ try {
     } else {
         throw new \App\Exception\Exception404('Страница не найдена', 404);
     }
+
+    $a = new \App\Models\Article();
+    $a->fill($s=['title' => '123', 'text' => '321']);
     $controller->action($actionName);
 } catch (\App\Exception\Exception404 $error) {
     header("HTTP/1.0 404 Not Found");

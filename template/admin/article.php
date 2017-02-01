@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <article>
-            <form method="post" action="/obychenie/Php2-04/admin/index.php?act=CU">
+            <form method="post" action="/obychenie/Php2-05/admin/index.php?act=CU">
                 <!-- Присвоение необходимо, что-бы избежать повторных запросов к БД -->
                 <p><?php if (false !== ($author = $article->author)) {
                     echo $author->firstname . ' ' . $author->lastname;
@@ -23,7 +23,7 @@
                 <p><input type="text" class="form-control" name="title" value="<?php echo $article->title; ?>"></p>
                 <p><textarea name="text" class="form-control" rows="3"><?php echo $article->text; ?></textarea></p>
                 <input value="Сохранить" class="btn btn-default btn-lg" type="submit">
-                <a class="btn btn-default btn-lg" href="/obychenie/Php2-04/admin/index.php?act=Delete&id=<?php echo $article->id; ?>">Удалить</a>
+                <a class="btn btn-default btn-lg" href="/obychenie/Php2-05/admin/index.php?act=Delete&id=<?php echo $article->id; ?>">Удалить</a>
             </form>
     </article>
 </div>

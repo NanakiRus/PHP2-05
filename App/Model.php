@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\Exception\ExceptionMulti;
+
 /**
  * Class Model
  * @package App
@@ -28,7 +30,7 @@ abstract class Model
     public static function findOneById($id)
     {
         $db = new Db();
-        $sql = 'SELECT * FROM11 ' . static::$table . ' WHERE id=:id';
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $res = $db->query($sql, [':id' => $id], static::class);
 
         if (empty($res)) {
@@ -103,6 +105,24 @@ abstract class Model
         $db = new Db();
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id = :id';
         $db->execute($sql, [':id' => $this->id]);
+    }
+
+    public function fill(array $data)
+    {
+        foreach ($this as $key => $value) {
+            if ('id' === $key) {
+                continue;
+            }
+            if (array_key_exists($key, $data)) {
+                if ('' != $data[$key]) {
+                    $this->$key = $data[$key];
+                } else {
+                    throw new ExceptionMulti('Пустое поле');
+                }
+            } else {
+                throw new ExceptionMulti('Нет поля');
+            }
+        }
     }
 
 }

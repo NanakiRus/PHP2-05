@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Controller;
@@ -15,7 +14,6 @@ class Index
     {
         $this->view->news = Article::findAll();
         $this->view->view(__DIR__ . '/../../template/template.php');
-
     }
 
     protected function actionOne()

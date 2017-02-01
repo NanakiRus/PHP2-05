@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-
 use App\Controller;
+use App\Exception\ExceptionMulti;
 use App\Models\Article;
 use App\Exception\Exception404;
 
@@ -24,7 +24,7 @@ class Admin
             if (false === $this->view->article) {
                 throw new Exception404('404 - документ не найден', $_GET['id']);
             } else {
-                $this->view->view(__DIR__ . '/../../template/admin/template.php');
+                $this->view->view(__DIR__ . '/../../template/admin/article.php');
             }
         }
     }
@@ -35,7 +35,7 @@ class Admin
             $news = Article::findOneById((int)$_GET['id']);
             $news->delete();
         }
-        header('Location: /obychenie/Php2-04/admin/index.php');
+        header('Location: /obychenie/Php2-05/admin/index.php');
         die;
     }
 
@@ -56,12 +56,22 @@ class Admin
             $article->id = $_POST['id'];
         }
 
-        if (isset($_POST['title']) && isset($_POST['text'])) {
+        try {
+            if (isset($_POST)) {
+                $article->fill($_POST);
+                $article->save();
+            }
+        } catch (ExceptionMulti $error) {
+            echo $error->getMessage();
+            die;
+        }
+
+        /*if (isset($_POST['title']) && isset($_POST['text'])) {
             $article->title = $_POST['title'];
             $article->text = $_POST['text'];
             $article->save();
-        }
-        header('Location: /obychenie/Php2-04/admin/index.php');
+        }*/
+        header('Location: /obychenie/Php2-05/admin/index.php');
         die;
     }
 
