@@ -13,5 +13,5 @@ $actionName = $_GET['act'] ?? 'All';
 try {
     $controller->action($actionName);
 } catch (\App\Exception\ExceptionMulti $e) {
-
+var_dump($e);
 }

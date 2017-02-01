@@ -3,7 +3,7 @@
 namespace App\Exception;
 
 class ExceptionMulti
-    extends ExceptionLog
+    extends \Exception
     implements \Iterator
 {
     protected $data = [];
@@ -13,9 +13,13 @@ class ExceptionMulti
         $this->data = $data;
     }
 
-    public function throwErrors()
+    public function errors()
     {
-        return $this->data;
+        if (!empty($this->data)) {
+            return $this->data;
+        } else {
+            return false;
+        }
     }
 
 

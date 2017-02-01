@@ -119,11 +119,15 @@ abstract class Model
                 if ('' != $data[$key]) {
                     $this->$key = $data[$key];
                 } else {
-                    $err->addErrors(new ExceptionMulti('Поле ' . $key . ' не заполненно'));
+                    $err->addErrors(new \Exception('Поле ' . $key . ' не заполненно'));
                 }
             } else {
-                $err->addErrors(new ExceptionMulti('Нет поля ' . $key));
+                $err->addErrors(new \Exception('Нет поля ' . $key));
             }
+        }
+
+        if (false === $err->errors()) {
+            throw $err->errors();
         }
     }
 
