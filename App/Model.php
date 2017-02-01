@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\Exception\ExceptionMulti;
 
 /**
@@ -107,16 +108,22 @@ abstract class Model
         $db->execute($sql, [':id' => $this->id]);
     }
 
+    /**
+     * @param array $data
+     * @throws ExceptionMulti если размеры полей Article не прошли валидацию
+     */
     public function fill(array $data)
     {
         $err = new ExceptionMulti();
 
         foreach ($data as $key => $value) {
+
             if ('id' === $key) {
                 continue;
             }
 
             $validator = 'validate' . ucfirst($key);
+
             if (method_exists($this, $validator)) {
                 $result = $this->$validator($value);
                 if (false === $result) {
@@ -126,18 +133,6 @@ abstract class Model
 
             $this->$key = $value;
 
-            /*if (array_key_exists($key, $data)) {
-                if ('' != $data[$key]) {
-                    $this->$key = $data[$key];
-                } else {
-                    $err->addErrors(new \Exception('Поле ' . $key . ' не заполненно'));
-                }
-            } else {
-                if ($data[$key] == $data['author_id'] || '' == isset($data['author_id'])) {
-                    continue;
-                }
-                $err->addErrors(new \Exception('Нет поля ' . $key));
-            }*/
         }
 
         if (true === $err->errors()) {
