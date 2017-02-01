@@ -26,7 +26,7 @@ class Db
             //die('DB error in ' . $sql);
         }
         if (null === $class) {
-            return $data = $sth->fetchAll();
+            return $sth->fetchAll();
         } else {
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         }

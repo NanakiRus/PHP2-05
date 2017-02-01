@@ -16,7 +16,7 @@ class ExceptionMulti
     public function errors()
     {
         if (!empty($this->data)) {
-            return $this->data;
+            return true;
         } else {
             return false;
         }

@@ -126,8 +126,8 @@ abstract class Model
             }
         }
 
-        if (false === $err->errors()) {
-            throw $err->errors();
+        if (true === $err->errors()) {
+            throw $err;
         }
     }
 
