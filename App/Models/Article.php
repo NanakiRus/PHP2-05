@@ -21,6 +21,32 @@ class Article
     public $text;
     public $author_id;
 
+    protected function validateTitle($value)
+    {
+        if (strlen($value) <= 3) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function validateText($value)
+    {
+        if (strlen($value) <= 10) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function validateAuthor_id($value)
+    {
+        if (isset($value) != '' ) {
+            return true;
+        }
+        return false;
+    }
+
     public function __get($name)
     {
         if ('author' === $name) {

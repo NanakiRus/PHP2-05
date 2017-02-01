@@ -115,15 +115,27 @@ abstract class Model
             if ('id' === $key) {
                 continue;
             }
-            if (array_key_exists($key, $data)) {
+
+            $validator = 'validate' . ucfirst($key);
+            if (method_exists($this, $validator)) {
+                $result = $this->$validator($data[$key]);
+                if (false === $result) {
+                    $err->addErrors(new \Exception('Ошибка поля ' . $key));
+                }
+            }
+
+            /*if (array_key_exists($key, $data)) {
                 if ('' != $data[$key]) {
                     $this->$key = $data[$key];
                 } else {
                     $err->addErrors(new \Exception('Поле ' . $key . ' не заполненно'));
                 }
             } else {
+                if ($data[$key] == $data['author_id'] || '' == isset($data['author_id'])) {
+                    continue;
+                }
                 $err->addErrors(new \Exception('Нет поля ' . $key));
-            }
+            }*/
         }
 
         if (true === $err->errors()) {

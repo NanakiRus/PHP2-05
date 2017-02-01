@@ -6,12 +6,26 @@ $controllerName = $_GET['ctrl'] ?? 'Admin';
 
 $controllerClassName = '\\App\\Controller\\' . $controllerName;
 
-$controller = new $controllerClassName;
-
 $actionName = $_GET['act'] ?? 'All';
 
 try {
+
+    if (true === class_exists($controllerClassName)) {
+        $controller = new $controllerClassName;
+    } else {
+        throw new \App\Exception\Exception404('Страница не найдена', 404);
+    }
+
     $controller->action($actionName);
-} catch (\App\Exception\ExceptionMulti $e) {
-var_dump($e);
+
+} catch (\App\Exception\ExceptionMulti $error) {
+    $view = new \App\View();
+    $view->error = $error;
+    $view->view(__DIR__ . '/../template/admin/error.php');
+
+} catch (\App\Exception\Exception404 $error) {
+
+    header("HTTP/1.0 404 Not Found");
+    die;
+
 }
