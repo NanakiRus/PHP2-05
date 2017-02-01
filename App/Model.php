@@ -109,6 +109,8 @@ abstract class Model
 
     public function fill(array $data)
     {
+        $err = new ExceptionMulti();
+
         foreach ($this as $key => $value) {
             if ('id' === $key) {
                 continue;
@@ -117,10 +119,10 @@ abstract class Model
                 if ('' != $data[$key]) {
                     $this->$key = $data[$key];
                 } else {
-                    throw new ExceptionMulti('Пустое поле');
+                    $err->addErrors(new ExceptionMulti('Поле ' . $key . ' не заполненно'));
                 }
             } else {
-                throw new ExceptionMulti('Нет поля');
+                $err->addErrors(new ExceptionMulti('Нет поля ' . $key));
             }
         }
     }

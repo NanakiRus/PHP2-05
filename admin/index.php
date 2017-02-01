@@ -10,4 +10,8 @@ $controller = new $controllerClassName;
 
 $actionName = $_GET['act'] ?? 'All';
 
-$controller->action($actionName);
+try {
+    $controller->action($actionName);
+} catch (\App\Exception\ExceptionMulti $e) {
+
+}

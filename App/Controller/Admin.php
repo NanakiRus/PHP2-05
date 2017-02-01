@@ -52,18 +52,13 @@ class Admin
             $article = new Article();
         }
 
-        if(isset($_POST['id']) && '' !== $_POST['id']) {
+        if (isset($_POST['id']) && '' !== $_POST['id']) {
             $article->id = $_POST['id'];
         }
 
-        try {
-            if (isset($_POST)) {
-                $article->fill($_POST);
-                $article->save();
-            }
-        } catch (ExceptionMulti $error) {
-            echo $error->getMessage();
-            die;
+        if (isset($_POST)) {
+            $article->fill($_POST);
+            $article->save();
         }
 
         /*if (isset($_POST['title']) && isset($_POST['text'])) {
