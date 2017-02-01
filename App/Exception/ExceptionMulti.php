@@ -8,7 +8,7 @@ class ExceptionMulti
 {
     protected $data = [];
 
-    public function addErrors($data)
+    public function addError($data)
     {
         $this->data = $data;
     }

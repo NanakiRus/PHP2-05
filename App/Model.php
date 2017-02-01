@@ -111,18 +111,20 @@ abstract class Model
     {
         $err = new ExceptionMulti();
 
-        foreach ($this as $key => $value) {
+        foreach ($data as $key => $value) {
             if ('id' === $key) {
                 continue;
             }
 
             $validator = 'validate' . ucfirst($key);
             if (method_exists($this, $validator)) {
-                $result = $this->$validator($data[$key]);
+                $result = $this->$validator($value);
                 if (false === $result) {
-                    $err->addErrors(new \Exception('Ошибка поля ' . $key));
+                    $err->addError(new \Exception('Ошибка поля ' . $key));
                 }
             }
+
+            $this->$key = $value;
 
             /*if (array_key_exists($key, $data)) {
                 if ('' != $data[$key]) {

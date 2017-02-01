@@ -39,13 +39,6 @@ class Article
         return true;
     }
 
-    protected function validateAuthor_id($value)
-    {
-        if (isset($value) != '' ) {
-            return true;
-        }
-        return false;
-    }
 
     public function __get($name)
     {
