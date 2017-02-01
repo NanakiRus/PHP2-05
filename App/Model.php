@@ -118,10 +118,6 @@ abstract class Model
 
         foreach ($data as $key => $value) {
 
-            if ('id' === $key) {
-                continue;
-            }
-
             $validator = 'validate' . ucfirst($key);
 
             if (method_exists($this, $validator)) {

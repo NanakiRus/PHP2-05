@@ -10,7 +10,7 @@ class ExceptionMulti
 
     public function addError($data)
     {
-        $this->data = $data;
+        $this->data[] = $data;
     }
 
     public function errors()

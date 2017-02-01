@@ -18,9 +18,9 @@ try {
 
     $controller->action($actionName);
 
-} catch (\App\Exception\ExceptionMulti $error) {
+} catch (\App\Exception\ExceptionMulti $errors) {
     $view = new \App\View();
-    $view->error = $error;
+    $view->errors = $errors;
     $view->view(__DIR__ . '/../template/admin/error.php');
 
 } catch (\App\Exception\Exception404 $error) {
