@@ -15,7 +15,7 @@ class ExceptionLog
 
     private function getLog()
     {
-        $log['messege'] = 'Сообщение: ' . $this->getMessage();
+        $log['message'] = 'Сообщение: ' . $this->getMessage();
         $log['code'] = 'Код: ' . $this->getCode();
         $log['file'] = 'В фалйе: ' . $this->getFile();
         $log['line'] = 'На строке: ' . $this->getLine();

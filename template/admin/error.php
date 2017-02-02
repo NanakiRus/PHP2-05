@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="container">
-<?php foreach ($errors as $error) : ?>
-    <?php echo $error->getMessage(); ?>
+    <?php foreach ($errors as $error) : ?>
+        <p><?php echo $error->getMessage(); ?></p>
     <?php endforeach; ?>
 </div>
 
